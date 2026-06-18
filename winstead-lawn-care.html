@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Winstead Lawn Care LLC – Professional lawn care in Columbus, OH. Mowing, seeding, mulching, irrigation, sod, weed control & garden work. 5-star rated. Call (910) 381-5350.">
+  <title>Winstead Lawn Care LLC | Columbus, OH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: #f8faf8; overflow-x: hidden; }
+    img, video { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    /* ── TOKENS ── */
+    :root {
+      --deep:    #1B4332;
+      --mid:     #2D6A4F;
+      --accent:  #52B788;
+      --light:   #95D5B2;
+      --pale:    #D8F3DC;
+      --cream:   #f8faf8;
+      --white:   #ffffff;
+      --ink:     #1a1a1a;
+      --steel:   #4a4a4a;
+      --muted:   #757575;
+      --border:  #ddf0e5;
+      --gold:    #F5C842;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.15; }
+    h1 { font-size: clamp(2.6rem, 6vw, 5.2rem); font-weight: 900; }
+    h2 { font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 700; }
+    h3 { font-size: 1.2rem; font-weight: 700; }
+    p  { line-height: 1.75; }
+
+    /* ── ANIMATIONS ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+      .reveal.in  { opacity: 1; transform: none; }
+      .d1 { transition-delay: .08s; }
+      .d2 { transition-delay: .18s; }
+      .d3 { transition-delay: .28s; }
+      .d4 { transition-delay: .38s; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ── MOBILE MENU ── */
+    .mob-overlay {
+      display: none; position: fixed; inset: 0; background: var(--deep); z-index: 1100;
+      flex-direction: column; align-items: center; justify-content: center; gap: 2.2rem;
+    }
+    .mob-overlay.open { display: flex; }
+    .mob-overlay a {
+      font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700;
+      color: var(--white); text-decoration: none; transition: color .2s;
+    }
+    .mob-overlay a:hover { color: var(--light); }
+    .mob-close {
+      position: absolute; top: 1.6rem; right: 1.8rem;
+      background: none; border: none; color: var(--white); font-size: 2rem; cursor: pointer;
+      line-height: 1;
+    }
+
+    /* ── NAVBAR ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.4rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .3s, padding .3s, box-shadow .3s;
+    }
+    .nav.solid {
+      background: var(--deep);
+      padding: .9rem 2.5rem;
+      box-shadow: 0 2px 24px rgba(0,0,0,.35);
+    }
+    .nav-brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
+    .nav-leaf {
+      width: 38px; height: 38px; background: var(--accent); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+    }
+    .nav-label { display: flex; flex-direction: column; gap: 1px; }
+    .nav-name {
+      font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700;
+      color: var(--white); line-height: 1;
+    }
+    .nav-sub {
+      font-size: .68rem; font-weight: 500; letter-spacing: .08em;
+      text-transform: uppercase; color: rgba(255,255,255,.7);
+    }
+    .nav-right { display: flex; align-items: center; gap: 1.8rem; }
+    .nav-links { list-style: none; display: flex; gap: 1.6rem; }
+    .nav-links a {
+      color: rgba(255,255,255,.88); text-decoration: none;
+      font-size: .85rem; font-weight: 500; letter-spacing: .02em; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--light); }
+    .nav-cta {
+      background: var(--accent); color: var(--white); text-decoration: none;
+      padding: .55rem 1.25rem; border-radius: 50px;
+      font-size: .85rem; font-weight: 600;
+      transition: background .2s, transform .2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--light); transform: translateY(-1px); }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; width: 100%; height: 100vh; min-height: 620px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #0d2b1e 0%, #1B4332 45%, #2D6A4F 100%);
+    }
+    .hero-video {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: 1;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(
+        180deg,
+        rgba(8,24,16,.42) 0%,
+        rgba(8,24,16,.62) 55%,
+        rgba(8,24,16,.82) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 3;
+      text-align: center; color: var(--white);
+      padding: 2rem 1.5rem; max-width: 860px; margin: 0 auto;
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(10px);
+      padding: .4rem 1.1rem; border-radius: 50px;
+      font-size: .78rem; font-weight: 500; letter-spacing: .06em;
+      color: var(--pale); margin-bottom: 1.6rem;
+    }
+    .hero-pill::before { content: '★'; color: var(--gold); font-size: .85rem; }
+    .hero h1 { color: var(--white); margin-bottom: 1.1rem; text-shadow: 0 3px 24px rgba(0,0,0,.35); }
+    .hero h1 em { font-style: italic; color: var(--light); }
+    .hero-sub {
+      font-size: 1.08rem; font-weight: 300; color: rgba(255,255,255,.88);
+      max-width: 520px; margin: 0 auto 2.6rem; line-height: 1.65;
+    }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-green {
+      background: var(--accent); color: var(--white); text-decoration: none;
+      padding: 1rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem;
+      border: none; cursor: pointer; display: inline-flex; align-items: center; gap: .4rem;
+      box-shadow: 0 4px 22px rgba(82,183,136,.42);
+      transition: all .25s;
+    }
+    .btn-green:hover { background: var(--light); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(82,183,136,.5); }
+    .btn-ghost {
+      background: transparent; color: var(--white); text-decoration: none;
+      padding: 1rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem;
+      border: 2px solid rgba(255,255,255,.55); cursor: pointer;
+      display: inline-flex; align-items: center; gap: .4rem;
+      transition: all .25s;
+    }
+    .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,.09); transform: translateY(-2px); }
+    .scroll-hint {
+      position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%);
+      z-index: 3; display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      color: rgba(255,255,255,.5); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .scroll-mouse {
+      width: 24px; height: 38px; border: 2px solid rgba(255,255,255,.35); border-radius: 12px;
+      position: relative;
+    }
+    .scroll-mouse::after {
+      content: ''; position: absolute; top: 6px; left: 50%;
+      transform: translateX(-50%);
+      width: 3px; height: 7px; background: rgba(255,255,255,.55); border-radius: 2px;
+      animation: mouseScroll 1.6s ease-in-out infinite;
+    }
+    @keyframes mouseScroll {
+      0%,100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+      60%      { transform: translateX(-50%) translateY(9px); opacity: .2; }
+    }
+
+    /* ── SECTION SHELL ── */
+    section { padding: 6rem 2rem; }
+    .wrap { max-width: 1160px; margin: 0 auto; }
+    .eyebrow {
+      font-size: .76rem; font-weight: 600; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: .7rem; display: block;
+    }
+    .sec-title { color: var(--deep); margin-bottom: .9rem; }
+    .sec-desc { color: var(--steel); font-size: 1.02rem; max-width: 580px; }
+    .sec-head { margin-bottom: 3.5rem; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--cream); }
+    .srv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.4rem;
+    }
+    .srv-card {
+      background: var(--white); border-radius: 16px; padding: 2rem 1.75rem;
+      border: 1px solid var(--border); position: relative; overflow: hidden;
+      transition: transform .28s, box-shadow .28s, border-color .28s;
+    }
+    .srv-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--light));
+      transform: scaleX(0); transform-origin: left; transition: transform .3s;
+    }
+    .srv-card:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(27,67,50,.11); border-color: var(--pale); }
+    .srv-card:hover::after { transform: scaleX(1); }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-7px); }
+    }
+    .srv-icon {
+      width: 50px; height: 50px; background: var(--pale); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.45rem; margin-bottom: 1.2rem;
+      animation: float 3s ease-in-out infinite;
+    }
+    .srv-card:nth-child(2) .srv-icon { animation-delay: .4s; }
+    .srv-card:nth-child(3) .srv-icon { animation-delay: .8s; }
+    .srv-card:nth-child(4) .srv-icon { animation-delay: .2s; }
+    .srv-card:nth-child(5) .srv-icon { animation-delay: .6s; }
+    .srv-card:nth-child(6) .srv-icon { animation-delay: 1s; }
+    .srv-card:nth-child(7) .srv-icon { animation-delay: .3s; }
+    .srv-card h3 { color: var(--deep); margin-bottom: .55rem; font-size: 1.12rem; }
+    .srv-card p  { color: var(--steel); font-size: .91rem; line-height: 1.68; }
+
+    /* ── WHY US ── */
+    #why { background: var(--deep); position: relative; overflow: hidden; }
+    #why::before {
+      content: ''; position: absolute; top: -120px; right: -120px;
+      width: 520px; height: 520px; border-radius: 50%;
+      background: rgba(82,183,136,.07); pointer-events: none;
+    }
+    #why::after {
+      content: ''; position: absolute; bottom: -100px; left: -80px;
+      width: 420px; height: 420px; border-radius: 50%;
+      background: rgba(82,183,136,.05); pointer-events: none;
+    }
+    #why .eyebrow  { color: var(--light); }
+    #why .sec-title { color: var(--white); }
+    #why .sec-desc { color: rgba(255,255,255,.7); }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.75rem;
+      position: relative; z-index: 1;
+    }
+    .why-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1); border-radius: 20px;
+      padding: 2.5rem 2rem; text-align: center;
+      backdrop-filter: blur(8px);
+      transition: background .28s, transform .28s;
+    }
+    .why-card:hover { background: rgba(255,255,255,.09); transform: translateY(-4px); }
+    .why-big {
+      font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900;
+      color: var(--light); line-height: 1; margin-bottom: .5rem;
+    }
+    .why-card h3 { color: var(--white); font-size: 1.18rem; margin-bottom: .7rem; }
+    .why-card p  { color: rgba(255,255,255,.68); font-size: .9rem; line-height: 1.68; }
+
+    /* ── REVIEWS ── */
+    #reviews { background: var(--white); }
+    .rev-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .rev-card {
+      background: var(--cream); border-radius: 16px; padding: 2rem 1.75rem;
+      border: 1px solid var(--border); position: relative;
+      transition: transform .28s, box-shadow .28s;
+      display: flex; flex-direction: column;
+    }
+    .rev-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(27,67,50,.09); }
+    .rev-open-quote {
+      font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 900;
+      color: var(--pale); line-height: .55; margin-bottom: .8rem; display: block;
+      user-select: none;
+    }
+    .rev-stars { color: var(--gold); font-size: .95rem; letter-spacing: 2px; display: block; margin-bottom: .75rem; }
+    .rev-text {
+      color: var(--steel); font-size: .91rem; line-height: 1.72;
+      font-style: italic; margin-bottom: 1.4rem; flex: 1;
+    }
+    .rev-author { display: flex; align-items: center; gap: .75rem; margin-top: auto; }
+    .rev-avatar {
+      width: 42px; height: 42px; border-radius: 50%; background: var(--mid);
+      color: var(--white); font-weight: 700; font-size: .88rem;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .rev-name  { font-weight: 600; font-size: .88rem; color: var(--ink); }
+    .rev-src   { font-size: .74rem; color: var(--muted); display: flex; align-items: center; gap: .3rem; margin-top: 2px; }
+    .g-dot {
+      width: 14px; height: 14px; border-radius: 50%; background: #4285F4;
+      color: var(--white); font-size: .58rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--cream); }
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-info { position: sticky; top: 100px; }
+    .contact-info h2 { color: var(--deep); margin-bottom: .9rem; }
+    .contact-info > p { color: var(--steel); margin-bottom: 2rem; line-height: 1.72; font-size: .97rem; }
+    .phone-big {
+      display: flex; align-items: center; gap: .8rem;
+      background: var(--deep); color: var(--white); text-decoration: none;
+      padding: 1.1rem 1.7rem; border-radius: 14px;
+      font-size: 1.2rem; font-weight: 700; margin-bottom: 1.6rem;
+      transition: background .25s, transform .25s, box-shadow .25s; width: fit-content;
+    }
+    .phone-big:hover { background: var(--mid); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(27,67,50,.28); }
+    .phone-icon-box {
+      width: 42px; height: 42px; background: var(--accent); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.15rem;
+    }
+    .info-items { display: flex; flex-direction: column; gap: .8rem; }
+    .info-item { display: flex; align-items: center; gap: .6rem; color: var(--steel); font-size: .9rem; }
+    .info-item span:first-child { font-size: 1rem; }
+
+    /* form */
+    .cform {
+      background: var(--white); border-radius: 20px; padding: 2.4rem 2rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 32px rgba(27,67,50,.07);
+    }
+    .cform h3 { color: var(--deep); margin-bottom: .3rem; font-size: 1.4rem; }
+    .form-note { color: var(--muted); font-size: .86rem; margin-bottom: 1.7rem; }
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .fg { margin-bottom: 1.2rem; }
+    .fg label { display: block; font-size: .82rem; font-weight: 600; color: var(--ink); margin-bottom: .38rem; letter-spacing: .02em; }
+    .fg input, .fg select, .fg textarea {
+      width: 100%; padding: .82rem 1rem;
+      border: 1.5px solid #cde9d9; border-radius: 10px;
+      font-family: 'Inter', sans-serif; font-size: .94rem; color: var(--ink);
+      background: var(--cream); transition: border-color .2s, box-shadow .2s; outline: none;
+    }
+    .fg input::placeholder, .fg textarea::placeholder { color: #aaa; }
+    .fg input:focus, .fg select:focus, .fg textarea:focus {
+      border-color: var(--accent); box-shadow: 0 0 0 3px rgba(82,183,136,.16); background: var(--white);
+    }
+    .fg textarea { min-height: 115px; resize: vertical; }
+    .fsubmit {
+      width: 100%; background: var(--accent); color: var(--white); border: none;
+      padding: 1rem; border-radius: 11px; font-family: 'Inter', sans-serif;
+      font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: .4rem;
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      transition: background .25s, transform .25s, box-shadow .25s;
+    }
+    .fsubmit:hover { background: var(--mid); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(82,183,136,.3); }
+    .form-success {
+      display: none; text-align: center; padding: 2rem 1rem; color: var(--deep);
+    }
+    .form-success .tick { font-size: 3rem; display: block; margin-bottom: .9rem; }
+    .form-success h3 { margin-bottom: .5rem; }
+    .form-success p { color: var(--muted); font-size: .9rem; }
+
+    /* ── FOOTER ── */
+    footer { background: #09160f; color: rgba(255,255,255,.65); padding: 3.5rem 2rem 2rem; }
+    .foot-top {
+      max-width: 1160px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+      padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .foot-brand h3 { color: var(--white); font-size: 1.2rem; margin-bottom: .55rem; }
+    .foot-brand p { font-size: .85rem; line-height: 1.68; max-width: 280px; }
+    .foot-phone {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: var(--light); text-decoration: none; font-weight: 600;
+      font-size: .95rem; margin-top: 1.1rem;
+    }
+    .foot-col h4 {
+      font-family: 'Inter', sans-serif; font-size: .78rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--white); margin-bottom: 1rem;
+    }
+    .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: .52rem; }
+    .foot-col ul li, .foot-col ul li a {
+      font-size: .86rem; color: rgba(255,255,255,.55); text-decoration: none; transition: color .2s;
+    }
+    .foot-col ul li a:hover { color: var(--light); }
+    .foot-bottom {
+      max-width: 1160px; margin: 1.8rem auto 0;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: .78rem; color: rgba(255,255,255,.35);
+    }
+    .foot-stars { color: var(--gold); margin-right: .35rem; }
+
+    /* ── SCROLL-TOP BTN ── */
+    .totop {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--accent); color: var(--white); border: none;
+      font-size: 1.15rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,.22);
+      opacity: 0; pointer-events: none; transition: opacity .3s, transform .25s, background .2s;
+    }
+    .totop.show { opacity: 1; pointer-events: auto; }
+    .totop:hover { background: var(--mid); transform: translateY(-2px); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .why-grid  { grid-template-columns: repeat(2,1fr); }
+      .rev-grid  { grid-template-columns: 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-info { position: static; }
+      .foot-top { grid-template-columns: 1fr 1fr; }
+      .foot-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .why-grid   { grid-template-columns: 1fr; }
+      .srv-grid   { grid-template-columns: 1fr; }
+      .foot-top   { grid-template-columns: 1fr; gap: 1.8rem; }
+      section     { padding: 4.5rem 1.25rem; }
+      .foot-bottom { flex-direction: column; gap: .4rem; text-align: center; }
+      .frow { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-btns { flex-direction: column; align-items: center; }
+      .btn-green, .btn-ghost { width: 100%; justify-content: center; }
+      .phone-big { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     MOBILE OVERLAY MENU
+     ============================================================ -->
+<div class="mob-overlay" id="mobMenu">
+  <button class="mob-close" id="mobClose" aria-label="Close menu">✕</button>
+  <a href="#services" onclick="closeMob()">Services</a>
+  <a href="#why"      onclick="closeMob()">Why Us</a>
+  <a href="#reviews"  onclick="closeMob()">Reviews</a>
+  <a href="#contact"  onclick="closeMob()">Contact</a>
+</div>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav class="nav" id="nav" role="navigation" aria-label="Main">
+  <a href="#" class="nav-brand" aria-label="Winstead Lawn Care home">
+    <div class="nav-leaf" aria-hidden="true">🌿</div>
+    <div class="nav-label">
+      <span class="nav-name">Winstead Lawn Care</span>
+      <span class="nav-sub">LLC · Columbus, OH</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links" role="list">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="tel:9103815350" class="nav-cta">📞 (910) 381-5350</a>
+    <button class="hamburger" id="hamburger" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<header class="hero" id="home">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <video
+    class="hero-video"
+    autoplay muted loop playsinline
+    aria-hidden="true"
+    poster=""
+  >
+    <source src="https://videos.pexels.com/video-files/2491284/2491284-uhd_2560_1440_24fps.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-pill">5.0 Stars · Columbus Area, OH</div>
+    <h1>Your Dream Lawn,<br><em>Delivered.</em></h1>
+    <p class="hero-sub">
+      Columbus's trusted lawn care experts. Eco-friendly, reliable, and always on time — from first cut to full transformation.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-green">Get a Free Quote →</a>
+      <a href="tel:9103815350" class="btn-ghost">📞 Call Now</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-mouse"></div>
+    <span>Scroll</span>
+  </div>
+</header>
+
+<!-- ============================================================
+     SERVICES
+     ============================================================ -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What We Do</span>
+      <h2 class="sec-title">Our Services</h2>
+      <p class="sec-desc">From weekly lawn care to full yard transformations — we handle every detail with professionalism and care.</p>
+    </div>
+
+    <div class="srv-grid">
+      <div class="srv-card reveal d1">
+        <div class="srv-icon" aria-hidden="true">🌿</div>
+        <h3>Lawn Mowing &amp; Maintenance</h3>
+        <p>Consistent, professional mowing and year-round upkeep to keep your lawn looking pristine every single season.</p>
+      </div>
+      <div class="srv-card reveal d2">
+        <div class="srv-icon" aria-hidden="true">🌱</div>
+        <h3>Grass Seeding</h3>
+        <p>Expert aeration and overseeding to fill bare spots, thicken thin turf, and give you the full, lush lawn you deserve.</p>
+      </div>
+      <div class="srv-card reveal d3">
+        <div class="srv-icon" aria-hidden="true">🪵</div>
+        <h3>Mulching</h3>
+        <p>Fresh mulch installation that suppresses weeds, retains moisture, and gives your beds a clean, polished finish.</p>
+      </div>
+      <div class="srv-card reveal d1">
+        <div class="srv-icon" aria-hidden="true">💧</div>
+        <h3>Irrigation System Repair</h3>
+        <p>Keep your lawn perfectly hydrated with expert irrigation diagnosis, repair, and seasonal maintenance services.</p>
+      </div>
+      <div class="srv-card reveal d2">
+        <div class="srv-icon" aria-hidden="true">🏡</div>
+        <h3>Sod Installation</h3>
+        <p>Instant green results with professional sod laying — perfect for new lawns, bare patches, or full yard renovations.</p>
+      </div>
+      <div class="srv-card reveal d3">
+        <div class="srv-icon" aria-hidden="true">🌾</div>
+        <h3>Weed Control</h3>
+        <p>Targeted treatments to eliminate existing weeds and prevent future growth — protecting your lawn all season long.</p>
+      </div>
+      <div class="srv-card reveal d1">
+        <div class="srv-icon" aria-hidden="true">🌸</div>
+        <h3>Garden Work</h3>
+        <p>Beautiful garden design, planting, trimming, and seasonal maintenance to elevate and enhance your outdoor space.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY CHOOSE US
+     ============================================================ -->
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why Choose Us</span>
+      <h2 class="sec-title" style="color:var(--white)">The Winstead Difference</h2>
+      <p class="sec-desc" style="color:rgba(255,255,255,.7)">
+        We're not just another lawn company. We're your Columbus neighbors, and we treat every yard like our own.
+      </p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card reveal d1">
+        <div class="why-big">5.0★</div>
+        <h3>Perfect Rating</h3>
+        <p>Every single Google review is five stars — real Columbus-area homeowners who trust us to show up and deliver results.</p>
+      </div>
+      <div class="why-card reveal d2">
+        <div class="why-big">🏠</div>
+        <h3>Locally Owned</h3>
+        <p>No call centers, no franchises. Just Paul and his team, personally invested in making your lawn the best on the block.</p>
+      </div>
+      <div class="why-card reveal d3">
+        <div class="why-big">$0</div>
+        <h3>Free Estimates</h3>
+        <p>Transparent pricing, no hidden fees — ever. Get a detailed, no-obligation quote before any work begins.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     REVIEWS
+     ============================================================ -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What Clients Say</span>
+      <h2 class="sec-title">Real Reviews, Real Results</h2>
+      <p class="sec-desc">Don't take our word for it — hear directly from Columbus homeowners who've seen the Winstead difference.</p>
+    </div>
+
+    <div class="rev-grid">
+      <!-- Review 1 -->
+      <div class="rev-card reveal d1">
+        <span class="rev-open-quote" aria-hidden="true">"</span>
+        <span class="rev-stars" aria-label="5 stars">★★★★★</span>
+        <p class="rev-text">
+          Winstead Lawn Care came out and totally transformed my yard into a yard I love again. Great service!!! Great pricing!!! I recommend them to anyone if you want your yard to shine!!! Thanks guys you did great!!!
+        </p>
+        <div class="rev-author">
+          <div class="rev-avatar" aria-hidden="true">JB</div>
+          <div>
+            <div class="rev-name">Joseph Bell</div>
+            <div class="rev-src"><span class="g-dot" aria-label="Google">G</span> Verified Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="rev-card reveal d2">
+        <span class="rev-open-quote" aria-hidden="true">"</span>
+        <span class="rev-stars" aria-label="5 stars">★★★★★</span>
+        <p class="rev-text">
+          Paul came out this spring and got our lawn aerated and seeded so things would look nice for our son's graduation party. We had bare spots everywhere from the dog. 3 weeks later and it looks GREAT!
+        </p>
+        <div class="rev-author">
+          <div class="rev-avatar" aria-hidden="true">MW</div>
+          <div>
+            <div class="rev-name">Matt Winger</div>
+            <div class="rev-src"><span class="g-dot" aria-label="Google">G</span> Verified Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="rev-card reveal d3">
+        <span class="rev-open-quote" aria-hidden="true">"</span>
+        <span class="rev-stars" aria-label="5 stars">★★★★★</span>
+        <p class="rev-text">
+          Working with Winstead was a great experience and my lawn looks AMAZING now! Paul showed up on schedule, worked quickly and did a very nice job spreading the fast growing seed around. I will have him back out in the fall. GREAT WORK. I'm thrilled.
+        </p>
+        <div class="rev-author">
+          <div class="rev-avatar" aria-hidden="true">KK</div>
+          <div>
+            <div class="rev-name">Kristin Kirby</div>
+            <div class="rev-src"><span class="g-dot" aria-label="Google">G</span> Verified Google Review</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-wrap">
+
+      <!-- Left: info -->
+      <div class="contact-info reveal">
+        <span class="eyebrow">Get In Touch</span>
+        <h2>Request a<br>Free Quote</h2>
+        <p>Ready to transform your outdoor space? Fill out the form or give us a call — we'll get back to you quickly with a personalized, no-obligation quote.</p>
+
+        <a href="tel:9103815350" class="phone-big">
+          <div class="phone-icon-box" aria-hidden="true">📞</div>
+          (910) 381-5350
+        </a>
+
+        <div class="info-items">
+          <div class="info-item"><span aria-hidden="true">📍</span><span>Columbus Area, Ohio</span></div>
+          <div class="info-item"><span aria-hidden="true">🕘</span><span>Opens 9:00 AM daily</span></div>
+          <div class="info-item"><span aria-hidden="true">⭐</span><span>5.0 Stars · 4 Google Reviews</span></div>
+          <div class="info-item"><span aria-hidden="true">🌱</span><span>Eco-friendly &amp; Locally Owned</span></div>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="cform reveal d2">
+        <h3>Send a Message</h3>
+        <p class="form-note">We'll respond within 24 hours.</p>
+
+        <form id="qForm" novalidate>
+          <div class="frow">
+            <div class="fg">
+              <label for="fFirst">First Name</label>
+              <input type="text" id="fFirst" name="first" placeholder="John" required>
+            </div>
+            <div class="fg">
+              <label for="fLast">Last Name</label>
+              <input type="text" id="fLast" name="last" placeholder="Smith" required>
+            </div>
+          </div>
+          <div class="fg">
+            <label for="fPhone">Phone Number</label>
+            <input type="tel" id="fPhone" name="phone" placeholder="(614) 000-0000" required>
+          </div>
+          <div class="fg">
+            <label for="fService">Service Needed</label>
+            <select id="fService" name="service">
+              <option value="">Select a service…</option>
+              <option>Lawn Mowing &amp; Maintenance</option>
+              <option>Grass Seeding</option>
+              <option>Mulching</option>
+              <option>Irrigation System Repair</option>
+              <option>Sod Installation</option>
+              <option>Weed Control</option>
+              <option>Garden Work</option>
+              <option>Multiple / Not Sure</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="fMsg">Message</label>
+            <textarea id="fMsg" name="message" placeholder="Tell us about your lawn and what you'd like done…"></textarea>
+          </div>
+          <button type="submit" class="fsubmit">Send Message &nbsp;→</button>
+        </form>
+
+        <div class="form-success" id="formOK" role="status" aria-live="polite">
+          <span class="tick" aria-hidden="true">✅</span>
+          <h3>Message Sent!</h3>
+          <p>Thanks! We'll be in touch shortly with your free, personalized quote.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <h3>Winstead Lawn Care LLC</h3>
+      <p>Providing exceptional, reliable, and eco-friendly lawn care for the Columbus, OH area. Building lasting relationships, one yard at a time.</p>
+      <a href="tel:9103815350" class="foot-phone">📞 (910) 381-5350</a>
+    </div>
+    <div class="foot-col">
+      <h4>Services</h4>
+      <ul>
+        <li>Lawn Mowing</li>
+        <li>Grass Seeding</li>
+        <li>Mulching</li>
+        <li>Irrigation Repair</li>
+        <li>Sod Installation</li>
+        <li>Weed Control</li>
+        <li>Garden Work</li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why">About Us</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Free Quote</a></li>
+        <li><a href="tel:9103815350">Call Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2025 Winstead Lawn Care LLC. All rights reserved.</span>
+    <span><span class="foot-stars">★★★★★</span> 5.0 · Columbus Area, OH</span>
+  </div>
+</footer>
+
+<!-- SCROLL-TO-TOP BUTTON -->
+<button class="totop" id="totop" aria-label="Scroll to top">↑</button>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+  /* ── Navbar ── */
+  const nav = document.getElementById('nav');
+  function updateNav() {
+    if (window.scrollY > 70) nav.classList.add('solid');
+    else nav.classList.remove('solid');
+    // scroll-to-top
+    const btn = document.getElementById('totop');
+    if (window.scrollY > 500) btn.classList.add('show');
+    else btn.classList.remove('show');
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+
+  /* ── Mobile menu ── */
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  function closeMob() {
+    document.getElementById('mobMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('mobClose').addEventListener('click', closeMob);
+
+  /* ── Scroll animations ── */
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+
+  /* ── Scroll to top ── */
+  document.getElementById('totop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ── Contact form ── */
+  document.getElementById('qForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const first = document.getElementById('fFirst').value.trim();
+    const phone = document.getElementById('fPhone').value.trim();
+    if (!first || !phone) {
+      alert('Please fill in your name and phone number so we can reach you!');
+      return;
+    }
+    this.style.display = 'none';
+    document.getElementById('formOK').style.display = 'block';
+  });
+
+  /* ── Smooth scroll for anchor links ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
